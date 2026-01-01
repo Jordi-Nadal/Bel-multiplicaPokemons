@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende las tablas de multiplicar jugando y coleccionando Pokémon">
+    <title>Multiplica Pokémons - Aprende las Tablas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PWA Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Configuration Screen -->
+        <div id="config-screen" class="screen active">
+            <div class="card">
+                <h1 class="title">🎮 Multiplica Pokémons</h1>
+                <p class="subtitle">¡Aprende las tablas y colecciona Pokémon!</p>
+
+                <div class="table-selection">
+                    <h2>Selecciona las tablas que quieres practicar:</h2>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-1" value="1">
+                            <span class="checkbox-label">Tabla del 1</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-2" value="2">
+                            <span class="checkbox-label">Tabla del 2</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-3" value="3">
+                            <span class="checkbox-label">Tabla del 3</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-4" value="4">
+                            <span class="checkbox-label">Tabla del 4</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-5" value="5">
+                            <span class="checkbox-label">Tabla del 5</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-6" value="6">
+                            <span class="checkbox-label">Tabla del 6</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-7" value="7">
+                            <span class="checkbox-label">Tabla del 7</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-8" value="8">
+                            <span class="checkbox-label">Tabla del 8</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-9" value="9">
+                            <span class="checkbox-label">Tabla del 9</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="table-10" value="10">
+                            <span class="checkbox-label">Tabla del 10</span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <p id="error-message" class="error-message"></p>
+
+                <button id="start-game-btn" class="btn btn-primary">¡Comenzar a Jugar! 🚀</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="score-display">
+                    <span class="score-label">Puntos:</span>
+                    <span id="total-score" class="score-value">0</span>
+                </div>
+                <button id="view-pokedex-btn" class="btn btn-secondary">📖 Pokédex</button>
+            </div>
+
+            <div class="card game-card">
+                <div class="timer-container">
+                    <div class="timer-label">⏱️ Tiempo:</div>
+                    <div id="timer" class="timer-value">0.0s</div>
+                    <div id="speed-bonus" class="speed-bonus">⚡ ¡Bonus de velocidad!</div>
+                </div>
+
+                <div class="question-container">
+                    <h2 id="question" class="question">¿Cuánto es 7 × 8?</h2>
+                </div>
+
+                <div class="answer-container">
+                    <input type="number" id="answer-input" class="answer-input" placeholder="Tu respuesta"
+                        autocomplete="off">
+                    <button id="submit-answer-btn" class="btn btn-primary">Responder ✓</button>
+                </div>
+
+                <div id="feedback" class="feedback"></div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Progreso al siguiente Pokémon</span>
+                        <span id="progress-text">0 / 100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-label">Racha:</span>
+                    <span id="streak" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Correctas:</span>
+                    <span id="correct-count" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Pokémon:</span>
+                    <span id="pokemon-count" class="stat-value">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pokédex Screen -->
+        <div id="pokedex-screen" class="screen">
+            <div class="pokedex-header">
+                <h1 class="title">📖 Mi Pokédex</h1>
+                <button id="back-to-game-btn" class="btn btn-secondary">← Volver al Juego</button>
+            </div>
+
+            <div class="pokedex-stats">
+                <div class="pokedex-stat">
+                    <span class="stat-label">Total capturados:</span>
+                    <span id="pokedex-total" class="stat-value">0</span>
+                </div>
+                <div class="pokedex-stat">
+                    <span class="stat-label">Puntos totales:</span>
+                    <span id="pokedex-score" class="stat-value">0</span>
+                </div>
+            </div>
+
+            <div id="pokemon-grid" class="pokemon-grid">
+                <div class="empty-pokedex">
+                    <p>🎯 ¡Aún no has capturado ningún Pokémon!</p>
+                    <p>Responde preguntas correctamente para empezar tu colección.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pokémon Catch Modal -->
+        <div id="catch-modal" class="modal">
+            <div class="modal-content catch-animation">
+                <h2 class="modal-title">🎉 ¡Felicidades!</h2>
+                <p class="modal-subtitle">¡Has capturado un nuevo Pokémon!</p>
+                <div id="caught-pokemon" class="caught-pokemon"></div>
+                <button id="close-modal-btn" class="btn btn-primary">¡Genial! 🎊</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
